@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Faculty Profiles Showcase</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide icons for visual flair -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0d47a1; /* Deep Blue */
+            --secondary-color: #4db6ac; /* Seafoam Green */
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Custom CSS Animations for High Impact --- */
+
+        /* Keyframes for card entry (Slide up, fade in, subtle perspective shift) */
+        @keyframes profileEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) scale(0.95);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Keyframes for title highlight (Subtle text shadow pulse) */
+        @keyframes titlePulse {
+            0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.4); }
+            50% { text-shadow: 0 0 15px rgba(13, 71, 161, 0.7); }
+        }
+
+        /* Keyframes for image border glow */
+        @keyframes borderGlow {
+            0% { box-shadow: 0 0 0 0 rgba(77, 182, 172, 0.4); }
+            100% { box-shadow: 0 0 15px 5px rgba(77, 182, 172, 0.8); }
+        }
+
+        /* Base state for profile card (hidden/pre-animation) */
+        .faculty-card {
+            opacity: 0;
+            transform: translateY(100px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); /* Slower, smoother transition */
+        }
+
+        /* Active state (triggered by IntersectionObserver) */
+        .faculty-card.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: profileEnter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Animation for elements within the card */
+        .faculty-card.is-visible .title-animated {
+            animation: titlePulse 2s infinite alternate 1s; /* Starts 1s after card loads */
+        }
+
+        .faculty-card.is-visible .image-animated {
+            animation: borderGlow 1.5s ease-out 0.5s forwards;
+        }
+
+        /* Utility classes for icon styling */
+        .icon-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="#home" class="flex-shrink-0 flex items-center text-2xl font-bold text-indigo-600">
+                        SIKSHA ADHYAYAN 🎓
+                    </a>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="#about" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    <a href="profiles.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Faculties</a>
+                    <a href="#courses" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Courses</a>
+                    <a href="#contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                </div>
+                </div>
+        </div>
+    </nav>
+
+
+    <!-- Header Section -->
+    <!-- <header class="bg-gray-950 shadow-xl sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white flex items-center">
+                <span data-lucide="graduation-cap" class="w-8 h-8 mr-3 text-secondary-color icon-shadow"></span>
+                Academic Leadership
+            </h1>
+            <span class="text-sm font-medium text-gray-400">Scroll to view animated profiles</span>
+        </div>
+    </header> -->
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- Faculty Profiles will be injected here by JavaScript -->
+        <div id="profiles-container"></div>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-500 text-sm border-t border-gray-800">
+        &copy; 2025 University Showcase. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Data structure for faculty profiles
+        const facultyData = [
+            {
+                name: "Deep Acharjee",
+                // title: "Professor of Theoretical Physics",
+                photoUrl: "Deep.png",
+                qualifications: ["Bsc in Physics from Chandigarh University."],
+                teaching: ["Faculty of Physics"],
+                color: "#ffc107", // Amber
+                icon: "atom"
+                
+            },
+            {
+                name: "Shantanu Roy",
+                // title: "Chair of Cognitive Science",
+                photoUrl: "Shantanu.png",
+                qualifications: ["Bsc in Zoology(Hons.), B.Ed from Assam University "],
+                teaching: ["Faculty of Biology"],
+                color: "#4caf50", // Green
+                icon: "brain"
+            },
+            {
+                name: "Joydip Malakar",
+                // title: "Senior Lecturer in Historical Studies",
+                photoUrl: "joydip.png",
+                qualifications: ["Msc in Mathematics", "SLET Cleared"],
+                teaching: ["Faculty of Mathematics"],
+                color: "#e91e63", // Pink
+                icon: "scroll"
+            },
+            // {
+            //     name: "Mr. David Miller, CPA",
+            //     title: "Associate Professor of Financial Modeling",
+            //     photoUrl: "https://placehold.co/150x150/ff9800/000000?text=D.M.",
+            //     qualifications: ["MBA (Wharton)", "CPA, CFA Charterholder"],
+            //     teaching: ["Advanced Corporate Finance", "Portfolio Management", "Algorithmic Trading"],
+            //     color: "#ff9800", // Orange
+            //     icon: "trending-up"
+            // },
+            // {
+            //     name: "Ms. Lena Petrova",
+            //     title: "Head of Digital Arts & Media",
+            //     photoUrl: "https://placehold.co/150x150/9c27b0/ffffff?text=L.P.",
+            //     qualifications: ["MFA in Digital Animation (Pratt)", "BFA in Graphic Design (RISD)"],
+            //     teaching: ["3D Modeling and Texturing", "Motion Graphics", "Interactive Design Principles"],
+            //     color: "#9c27b0", // Purple
+            //     icon: "pen-tool"
+            // },
+        ];
+        const FacultyCard = () => {
+  // Function to open image in full view (new tab)
+  const openImage = (src) => {
+    window.open(src, "_blank");
+        }};
+
+        // Function to create the HTML string for a faculty profile
+        function createProfileHtml(profile, index) {
+            // Determine card rotation based on index for variety
+            const rotationClass = index % 2 === 0 ? 'lg:-rotate-1' : 'lg:rotate-1';
+            const shadowColor = profile.color || 'var(--primary-color)';
+
+            return `
+                <section class="faculty-card shadow-2xl transition-all duration-700 p-6 rounded-3xl backdrop-filter backdrop-blur-md bg-gray-800/80 ${rotationClass}" 
+                         style="border: 2px solid ${shadowColor}; --shadow-color: ${shadowColor};">
+                    
+                    <div class="lg:flex items-center space-y-8 lg:space-y-0 lg:space-x-10">
+                        
+                        <!-- Profile Image & Icon (Left Side) -->
+                        <div class="flex-shrink-0 flex flex-col items-center relative">
+                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 image-animated" style="border-color: ${shadowColor};">
+                                <img src="${profile.photoUrl}" alt="Photo of ${profile.name}" class="w-full h-full object-cover transition duration-500 hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/150x150/555/FFF?text=N/A';" loading="lazy">
+                            </div>
+                            <div class="absolute -bottom-3 text-white p-3 rounded-full shadow-lg" style="background-color: ${shadowColor};">
+                                <span data-lucide="${profile.icon}" class="w-6 h-6"></span>
+                            </div>
+                        </div>
+
+                        <!-- Details (Right Side) -->
+                        <div class="flex-grow pt-4">
+                            <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-2 title-animated" style="color: ${profile.color || 'var(--secondary-color)'};">
+                                ${profile.name}
+                            </h2>
+                            <p class="text-xl font-medium mb-6 text-gray-300">${profile.title}</p>
+                            
+                            <!-- Qualifications & Teaching Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                
+                                <!-- Qualifications -->
+                                <div class="p-4 rounded-xl bg-gray-700/70 shadow-inner hover:bg-gray-700 transition duration-300 border-l-4" style="border-left-color: ${shadowColor};">
+                                    <h3 class="flex items-center text-lg font-semibold mb-3 text-secondary-color">
+                                        <span data-lucide="award" class="w-5 h-5 mr-2"></span> Qualifications
+                                    </h3>
+                                    <ul class="list-disc ml-5 space-y-1 text-gray-300">
+                                        ${profile.qualifications.map(q => `<li>${q}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                
+                                <!-- Teaching Subjects -->
+                                <div class="p-4 rounded-xl bg-gray-700/70 shadow-inner hover:bg-gray-700 transition duration-300 border-l-4" style="border-left-color: ${shadowColor};">
+                                    <h3 class="flex items-center text-lg font-semibold mb-3 text-secondary-color">
+                                        <span data-lucide="book-open-text" class="w-5 h-5 mr-2"></span> Subjects Taught
+                                    </h3>
+                                    <ul class="list-disc ml-5 space-y-1 text-gray-300">
+                                        ${profile.teaching.map(t => `<li>${t}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Main logic to render profiles and set up observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('profiles-container');
+
+            // 1. Render all profiles
+            facultyData.forEach((profile, index) => {
+                const profileHtml = createProfileHtml(profile, index);
+                container.innerHTML += profileHtml;
+            });
+
+            // 2. Initialize Lucide icons (must happen after elements are added to DOM)
+            lucide.createIcons();
+
+            // 3. Set up IntersectionObserver for scroll animation
+            const cards = document.querySelectorAll('.faculty-card');
+
+            const observerOptions = {
+                root: null, // relative to viewport
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is visible, add the animation class
+                        entry.target.classList.add('is-visible');
+                        // Stop observing once it has animated once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Start observing each card
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
