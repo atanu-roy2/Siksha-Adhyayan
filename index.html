@@ -1,402 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bright Minds Academy - Education for the Future</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Custom CSS for Image Slider */
-        .slider-container {
-            width: 300%; /* For 3 images to slide */
-            display: flex;
-            animation: slide 15s infinite; /* Adjust time for speed */
-        }
-        .slider-image {
-            width: 33.33%;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Minds Academy - Education for the Future</title>
 
-        /* Keyframes for infinite sliding effect */
-        @keyframes slide {
-            0% { transform: translateX(0); } /* Start with first image */
-            33% { transform: translateX(0); }
-            37% { transform: translateX(-33.33%); } /* Move to second image */
-            66% { transform: translateX(-33.33%); }
-            70% { transform: translateX(-66.66%); } /* Move to third image */
-            99% { transform: translateX(-66.66%); }
-            100% { transform: translateX(0); } /* Loop back to first */
-        }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+ 
 
-        /* Ensure the body takes up the full screen height for sticky footer if needed */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex-grow: 1;
-        }
-
-        /* Custom CSS to define the expanded state (Only applies on lg and up) */
-/* The 'lg:' prefix ensures this is responsive for laptops/tablets */
-@media (min-width: 1024px) {
-    .profile-card.active {
-        /* Make the card span all three columns and expand its height */
-        grid-column: span 3 / span 3;
-        max-height: 400px;
-        padding: 40px; /* Adjust padding for expanded look */
-        align-items: flex-start; /* Align content to the left */
-    }
-
-    .profile-card.active .profile-content {
-        /* Use flexbox to put image (left) and details (right) side-by-side */
-        display: flex;
-        align-items: center;
-        width: 100%;
-        text-align: left;
-    }
-    
-    .profile-card.active .profile-img {
-        /* Make photo bigger and apply a techy shadow/ring */
-        width: 160px;
-        height: 160px;
-        margin-right: 40px;
-        margin-bottom: 0;
-        transform: scale(1.1);
-        box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); /* Indigo glow */
-    }
-
-    .profile-card.active .profile-details {
-        /* Ensure details take up the rest of the space */
-        flex-grow: 1;
-    }
-    
-    .profile-card.active .profile-details h3 {
-        /* Adjust text size for the bigger display */
-        font-size: 2.5rem; /* 4xl */
-    }
-
-    /* Hide siblings when one is active to focus on the expanded card */
-    .profile-card.hide-sibling {
-        opacity: 0;
-        width: 0;
-        padding: 0;
-        margin: 0;
-        transform: scale(0.9);
-        pointer-events: none;
-        overflow: hidden;
-    }
-}
-
-/* Ensure smooth transition property is on the main card */
-.profile-card {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Tailwind's ease-in-out curve */
-}
-    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <a href="#home" class="flex-shrink-0 flex items-center text-2xl font-bold text-indigo-600">
-                        SIKSHA ADHYAYAN 🎓
-                    </a>
-                </div>
-                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a href="#home" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
-                    <a href="#about" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
-                    <a href="profiles.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Faculties</a>
-                    <a href="#courses" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Courses</a>
-                    <a href="#contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
-                </div>
-                </div>
-        </div>
-    </nav>
+<body>
 
-    <main>
-        <section id="home" class="relative overflow-hidden h-screen">
-            <div class="slider-container h-full">
-                <div class="slider-image" style="background-image: url('hero-img4.jpg');"></div>
-                <div class="slider-image" style="background-image: url('hero-img2.jpg');"></div>
-                <div class="slider-image" style="background-image: url('hero-img3.jpg');"></div>
-                
-            </div>
-
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white text-center tracking-tight leading-none mb-4 animate-pulse">
-                    <span class="bg-indigo-600 px-4 py-2 rounded-lg shadow-2xl">SIKSHA ADHYAYAN</span>
-                </h1>
-                <p class="text-xl md:text-3xl text-white font-light italic text-center max-w-2xl mt-4">
-                    "The beautiful thing about learning is that no one can take it away from you."
-                </p>
-                <a href="#courses" class="mt-8 px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition duration-300">
-                    Explore Our Courses
-                </a>
-            </div>
-        </section>
-<!-- updates -->
-        <!-- <section id="updates" class="py-12 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">📢 Latest Updates & News</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 shadow-lg rounded-lg">
-                        <p class="text-sm text-indigo-600 font-semibold">NOV 18, 2025</p>
-                        <p class="mt-1 text-lg font-medium text-gray-900">Admissions Open for Winter Semester 2026!</p>
-                        <a href="#" class="text-sm text-indigo-500 hover:text-indigo-700 mt-2 block">Read More &rarr;</a>
-                    </div>
-                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 shadow-lg rounded-lg">
-                        <p class="text-sm text-yellow-600 font-semibold">NOV 10, 2025</p>
-                        <p class="mt-1 text-lg font-medium text-gray-900">Dr. Sharma wins National Research Award.</p>
-                        <a href="#" class="text-sm text-yellow-500 hover:text-yellow-700 mt-2 block">Read More &rarr;</a>
-                    </div>
-                    <div class="bg-green-50 border-l-4 border-green-500 p-4 shadow-lg rounded-lg">
-                        <p class="text-sm text-green-600 font-semibold">OCT 28, 2025</p>
-                        <p class="mt-1 text-lg font-medium text-gray-900">Annual Tech Fest 'Innovate 25' a huge success!</p>
-                        <a href="#" class="text-sm text-green-500 hover:text-green-700 mt-2 block">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-<!-- about -->
-        <section id="about" class="py-20 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-10">📖 About Our Institute</h2>
-                <div class="lg:flex lg:items-center lg:space-x-12">
-                    <div class="lg:w-1/2">
-                        <p class="mt-4 text-lg text-gray-600">
-                            Siksha Adhyayan Established on 2nd April 2023, Siksha Adhyayan Institute stands as a symbol of dedication, innovation, and accessibility in education. What started as a small academic initiative with a few passionate teachers has now grown into a trusted online and offline learning platform for students from Classes VI to XII, covering both Science and Humanities streams.
-
-From digital classrooms to in-person guidance, we bridge the gap between traditional and modern education — ensuring that every learner receives personal attention, conceptual clarity, and the confidence to perform their best.
-                        </p>
-                        <p class="mt-4 text-lg text-gray-600">
-                            Our state-of-the-art campus and dedicated faculty foster an environment of curiosity and collaboration. We are committed to excellence in teaching, research, and community service.
-                        </p>
-                        <!-- <a href="#contact" class="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
-                            Our Mission & Values
-                        </a> -->
-                    </div>
-                    <div class="lg:w-1/2 mt-8 lg:mt-0">
-                        <img class="rounded-lg shadow-xl" src="https://scontent.fjrh1-2.fna.fbcdn.net/v/t39.30808-6/480877346_122287665938007395_2058371949578943632_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=U9DULOhqtU0Q7kNvwHQ-o6u&_nc_oc=AdnSJ3U7vzT4XCD-emaYr0NexL_LKU8Yb22aOGsMlzcrPSh0gNzk21jPJqDGQJQBET1q9Yfmx3zgbKCI0IxulkpQ&_nc_zt=23&_nc_ht=scontent.fjrh1-2.fna&_nc_gid=FqUsbaePnCLEVXvs_WQfNw&oh=00_Afg8IpP4flHpnh3V7D4C8RlyzgvQiHGbs7S2gTta16mmJg&oe=6921F1A1" alt="Institute Building">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<!-- faculties -->
-
-        <div class=" max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-    <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-12">Meet Our Faculties</h2>
-    
-    <div class="flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-            
-            <div id="card-1" class="profile-card bg-white rounded-xl shadow-lg transition-all duration-500 cursor-pointer overflow-hidden p-8 flex flex-col items-center text-center border-t-4 border-indigo-600">
-                <div class="profile-content transition-transform duration-500 ease-in-out">
-                    
-                    <img class="profile-img w-28 h-28 rounded-full object-cover mb-4 ring-4 ring-indigo-100 p-1 transition-all duration-500" 
-                         src="Deep.png" 
-                         alt="Dr. Anya Sharma Profile Picture">
-                    
-                    <div class="profile-details">
-                        <h3 class="text-2xl font-bold text-indigo-700 mt-2">Deep Acharjee</h3>
-                        <p class="text-md text-gray-600 mt-1">Faculty of Physics</p>
-                        <p class="text-sm text-gray-500 mt-3 italic max-w-xs">"Bsc in Physics from Chandigarh University."</p>
-                        <a href="#" class="mt-4 text-sm font-semibold text-indigo-500 hover:text-indigo-700 transition duration-200">View Full Profile &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="card-2" class="profile-card bg-white rounded-xl shadow-lg transition-all duration-500 cursor-pointer overflow-hidden p-8 flex flex-col items-center text-center border-t-4 border-indigo-600">
-                <div class="profile-content transition-transform duration-500 ease-in-out">
-                    
-                    <img class="profile-img w-28 h-28 rounded-full object-cover mb-4 ring-4 ring-indigo-100 p-1 transition-all duration-500" 
-                         src="shantanu.png" 
-                         alt="Prof. David Lee Profile Picture">
-                    
-                    <div class="profile-details">
-                        <h3 class="text-2xl font-bold text-indigo-700 mt-2">Shantanu Roy</h3>
-                        <p class="text-md text-gray-600 mt-1">Faculty of Biology</p>
-                        <p class="text-sm text-gray-500 mt-3 italic max-w-xs">"Bsc in Zoology(Hons.), B.Ed from Assam University "</p>
-                        <a href="#" class="mt-4 text-sm font-semibold text-indigo-500 hover:text-indigo-700 transition duration-200">View Full Profile &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="card-3" class="profile-card bg-white rounded-xl shadow-lg transition-all duration-500 cursor-pointer overflow-hidden p-8 flex flex-col items-center text-center border-t-4 border-indigo-600">
-                <div class="profile-content transition-transform duration-500 ease-in-out">
-                    
-                    <img class="profile-img w-28 h-28 rounded-full object-cover mb-4 ring-4 ring-indigo-100 p-1 transition-all duration-500" 
-                         src="joydip.png" 
-                         alt="Joydip ">
-                    
-                    <div class="profile-details">
-                        <h3 class="text-2xl font-bold text-indigo-700 mt-2">Joydip Malakar</h3>
-                        <p class="text-md text-gray-600 mt-1">Faculty of Mathematics</p>
-                        <p class="text-sm text-gray-500 mt-3 italic max-w-xs">"Msc in Mathematics, SLET Cleared"</p>
-                        <a href="#" class="mt-4 text-sm font-semibold text-indigo-500 hover:text-indigo-700 transition duration-200">View Full Profile &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="#home" class="logo">SIKSHA ADHYAYAN 🎓</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="profiles.html">Faculties</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="slider-container">
+      <div class="slider-image" style="background-image: url('hero-img4.jpg');"></div>
+      <div class="slider-image" style="background-image: url('hero-img2.jpg');"></div>
+      <div class="slider-image" style="background-image: url('hero-img3.jpg');"></div>
+    </div>
+
+    <div class="hero-overlay">
+      <h1 class="hero-title"><span>SIKSHA ADHYAYAN</span></h1>
+      <p class="hero-subtext">"The beautiful thing about learning is that no one can take it away from you."</p>
+      <button class="hero-btn">Explore Our Courses</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title"><i>ABOUT US</h2></i>
+    <div class="abt-content">
+    <div class="about-text">
+      <i>Siksha Adhyayan Institute stands as a beacon of quality, affordability, and accessibility in education.
+We empower students from Classes 6 to 12 through innovative digital learning designed to strengthen their foundation and boost board exam success.</i>
+    </div>
+    <div class="about-image">
+
+    </div>
+    </div>
+   
+  </section>
+
+  <!-- Faculties -->
+  <section class="faculty-section">
+    <h2 class="section-title">Meet Our Faculties</h2>
+<div class="card-container">
+<div class="profile-card">
+<div class="profile-header">
+<img src="Deep.png" alt="Faculty Photo">
+</div>
+<div class="profile-body">
+<h2>Deep Acharjee</h2>
+<h4>Faculty of Physics</h4>
+<p>Bsc. Physics<br>Chandigarh University</p>
 </div>
 
-<!-- courses -->
-        <section id="courses" class="py-20 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-10">📚 Our Core Courses</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:scale-[1.02] transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-indigo-600"> Regular Foundation Batch (Classes VI–VIII)</h3>
-                            <p class="mt-2 text-gray-600">
-                                🔹 Focus: Concept building, NCERT learning, and revision practice
-                                🔹 Mode: Online + Offline
-                                🔹 Language: English & Banglish</p>
-                            <a href="#contact" class="mt-4 inline-block text-indigo-500 hover:text-indigo-700 font-medium">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:scale-[1.02] transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-indigo-600"> Board Preparatory Batch (Classes IX–X)</h3>
-                            <p class="mt-2 text-gray-600">
-                                🔹 Focus: Complete syllabus coverage, test series, and doubt-clearing sessions
-                                🔹 Includes: Science, Mathematics, History, Geography, Political Science
-                                🔹 Mode: Online + Offline </p>
-                            <a href="#contact" class="mt-4 inline-block text-indigo-500 hover:text-indigo-700 font-medium">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:scale-[1.02] transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-indigo-600">Senior Board Excellence Batch (Classes XI–XII – Science & Humanities)</h3>
-                            <p class="mt-2 text-gray-600">
-                                🔹 Focus: Board exam strategy, advanced concepts, and revision tests
-                                🔹 Subjects: Physics, Chemistry, Biology, Mathematics, History, Geography, Political Science, Economics
-                                🔹 Mode: Online + Offline</p>
-                            <a href="#contact" class="mt-4 inline-block text-indigo-500 hover:text-indigo-700 font-medium">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-10">
-                    <a href="#" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
-                        <!-- View All Programs -->
-                    </a>
-                </div>
-            </div>
-        </section>
 
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-10">📞 Get In Touch</h2>
-                <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                        <p class="mt-4 text-lg text-gray-600 flex items-center">
-                            <svg class="h-6 w-6 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            **Address:** Bright Minds Campus, 123 Education St, Knowledge City, World 10001
-                        </p>
-                        <p class="mt-4 text-lg text-gray-600 flex items-center">
-                            <svg class="h-6 w-6 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-3.28a1 1 0 01-.948-.684l-1.498-4.493a1 1 0 01.502-1.21l2.257-1.13a11.042 11.042 0 00-5.516-5.516l-1.13 2.257a1 1 0 01-1.21.502l-4.493-1.498A1 1 0 015 5.72V5z"/></svg>
-                            **Phone:** +1 (555) 123-4567
-                        </p>
-                        <p class="mt-4 text-lg text-gray-600 flex items-center">
-                            <svg class="h-6 w-6 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            **Email:** info@brightminds.edu
-                        </p>
-                    </div>
+<div class="profile-footer">
+<button>View Profile</button>
+</div>
+</div>
+<div class="profile-card">
+<div class="profile-header">
+<img src="shantanu.png" alt="Faculty Photo">
+</div>
+<div class="profile-body">
+<h2>Shantanu Roy</h2>
+<h4>Faculty of Biology</h4>
+<p>Bsc. BEd. Zoology (HONS.)<br>Assam University</p>
+</div>
+<div class="profile-footer">
+<button>View Profile</button>
+</div>
+</div>
+<div class="profile-card">
+<div class="profile-header">
+<img src="joydip.png" alt="Faculty Photo">
+</div>
+<div class="profile-body">
+<h2>Joydip Malakar</h2>
+<h4>Faculty of Mathematics</h4>
+<p>Msc. Mathematics<br>SLET Cleared</p>
+</div>
+<div class="profile-footer">
+<button>View Profile</button>
+</div>
+</div>
+</div>
+  </section>
 
-                    <div class="mt-12 lg:mt-0">
-                        <form action="#" method="POST" class="bg-gray-50 p-6 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Send us a message</h3>
-                            <input type="text" name="name" placeholder="Your Name" required class="w-full px-3 py-2 border border-gray-300 rounded-md mb-4 focus:ring-indigo-500 focus:border-indigo-500">
-                            <input type="email" name="email" placeholder="Your Email" required class="w-full px-3 py-2 border border-gray-300 rounded-md mb-4 focus:ring-indigo-500 focus:border-indigo-500">
-                            <textarea name="message" rows="4" placeholder="Your Message" required class="w-full px-3 py-2 border border-gray-300 rounded-md mb-4 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                            <button type="submit" class="w-full px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- Courses -->
+  <section id="courses">
+    <h2 class="section-title">📚 Our Core Courses</h2>
+    <div class="courses-grid">
 
-    <footer class="text-center py-8 text-white text-md border-t border-white-800 bg-black">
-        &copy; 2025 Siksha Adhyayan. All Rights Reserved.
-        <div class="font-bold bg-indigo-50 p-5 text-2xl text-black"> 
-            connect with us
-            <ul class="font-extrabold text-3xl gap-8 margin-top-5 ">
-                <a href="https://www.facebook.com/share/1SZV8vVF8h/"><li><i class="fa-brands fa-facebook hover:shadow-xl hover:scale-105 transition duration-300"></i></li></a>
-                <a href="https://www.instagram.com/sikshaadhyayan?igsh=MWU0ZGp1bDY2NWhuOA=="><li><i class="fa-brands fa-square-instagram hover:shadow-xl hover:scale-105 transition duration-300"></i></li></a>
-                <a href=" https://www.youtube.com/@SikshaAdhyayanOnline"><li><i class="fa-brands fa-youtube hover:shadow-xl hover:scale-105 transition duration-300"></i></li></a>
-            </ul> 
-        </div>
-    </footer>
+      <div class="course-card">
+        <h3>Foundation Batch (VI–VIII)</h3>
+        <p>Focus: Concept building...</p>
+      </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- 1. Smooth Scrolling Logic (From original template) ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+      <!-- More course cards -->
 
+    </div>
+  </section>
 
-        // --- 2. Profile Card Animation Logic (New feature) ---
-        const cards = document.querySelectorAll('.profile-card');
-        const cardContainer = document.querySelector('.grid');
-        const mediaQuery = window.matchMedia('(min-width: 1024px)'); // Check for laptop/tablet size
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">📞 Get In Touch</h2>
+    <div class="contact-container">
 
-        cards.forEach(card => {
-            card.addEventListener('click', (event) => {
-                // Only run the animation on large screens (laptops/tablets)
-                if (!mediaQuery.matches) {
-                    return; 
-                }
+      <div class="contact-info">
+        <p><b>Address:</b> Bright Minds Campus...</p>
+      </div>
 
-                const isActive = card.classList.contains('active');
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea rows="5" placeholder="Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
 
-                // Clear all active/hide states first
-                cards.forEach(c => {
-                    c.classList.remove('active', 'hide-sibling');
-                    c.style.cssText = ''; 
-                });
-                
-                // If the clicked card was not active, activate it
-                if (!isActive) {
-                    card.classList.add('active');
-                    
-                    // Hide siblings
-                    cards.forEach(c => {
-                        if (c !== card) {
-                            c.classList.add('hide-sibling');
-                        }
-                    });
+    </div>
+  </section>
 
-                    // Temporarily set grid to single column to allow active card to span 3 columns smoothly
-                    cardContainer.classList.remove('md:grid-cols-3');
-                    cardContainer.classList.add('grid-cols-1');
-
-                } else {
-                    // Restore grid layout when all cards are deactivated
-                    cardContainer.classList.remove('grid-cols-1');
-                    cardContainer.classList.add('md:grid-cols-3');
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
