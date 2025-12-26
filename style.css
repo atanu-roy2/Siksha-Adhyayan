@@ -517,6 +517,13 @@ background-color: #172554;
     font-size: 16px;
     padding: 10px 20px;
   }
+  .slider-container{
+    height: 300px;
+  }
+
+  #home{
+    height: 300px;
+  }
 
   /* About Section */
   .abt-content {
