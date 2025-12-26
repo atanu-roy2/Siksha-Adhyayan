@@ -489,4 +489,121 @@ background-color: #172554;
     }
 }
 
+@media (max-width: 576px) {
+
+  /* Navbar */
+  .nav-container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  /* Hero Section */
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtext {
+    font-size: 16px;
+  }
+
+  .hero-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  /* About Section */
+  .abt-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-image {
+    width: 100%;
+    height: 250px;
+  }
+
+  .about-text {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  /* Faculty Cards */
+  .card-container {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .profile-card {
+    width: 90%;
+    height: auto;
+  }
+
+  /* Courses */
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact */
+  .contact-container {
+    padding: 20px;
+  }
+
+  .contact-section h2 {
+    font-size: 24px;
+  }
+
+  /* Footer */
+  .footer-container {
+    text-align: center;
+  }
+}
+
+/* for tablet */
+@media (max-width: 992px) {
+
+  /* Hero */
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .hero-subtext {
+    font-size: 18px;
+  }
+
+  /* About */
+  .abt-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-image {
+    width: 90%;
+    height: 300px;
+  }
+
+  .about-text {
+    font-size: 22px;
+  }
+
+  /* Faculty */
+  .card-container {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  /* Courses */
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
 
