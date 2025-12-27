@@ -44,3 +44,13 @@
 
     // Small UX: close modal on backdrop click
     modal?.addEventListener('click', (ev)=>{ if(ev.target === modal) modal.classList.add('hidden'); });
+
+    const navbar = document.querySelector('#main-nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) { // Change color after scrolling 50px down
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
